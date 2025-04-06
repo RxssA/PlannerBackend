@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Todo = require('../todo');
+const Todo = require('../schemas/todo');
 
 
 router.get('/list', async (req, res) => {

@@ -14,7 +14,7 @@ router.post('/create', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const activities = await Activity.find().populate('participants');
+        const activities = await Activity.find(); //.populate('participants');
         res.json(activities);
     } catch (error) {
         res.status(500).json({ error: error.message });
