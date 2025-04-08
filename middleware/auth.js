@@ -1,5 +1,9 @@
 const jwt = require('jsonwebtoken');
 
+/*
+protects routes by verifiing JWT token, if the auth token is not in the header you cant access the route
+*/
+
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ error: 'No token provided' });

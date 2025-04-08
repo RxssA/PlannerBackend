@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Activity = require('../schemas/activity');
 
+
+
+// endpoint for making a new activity
 router.post('/create', async (req, res) => {
     try {
         const activity = new Activity(req.body);
@@ -11,10 +14,10 @@ router.post('/create', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
-
+// endpoint for calling all the activities and displaying them
 router.get('/list', async (req, res) => {
     try {
-        const activities = await Activity.find(); //.populate('participants');
+        const activities = await Activity.find();
         res.json(activities);
     } catch (error) {
         res.status(500).json({ error: error.message });

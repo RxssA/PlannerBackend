@@ -35,17 +35,13 @@ router.post('/login', async (req, res) => {
         
         // Find user by email
         const user = await User.findOne({ email });
-        console.log('User found:', user ? 'Yes' : 'No');
         
         if (!user) {
             console.log('User not found');
             return res.status(401).json({ error: 'User not found' });
         }
 
-        // Check password
-        console.log('Checking password...');
         const isMatch = await user.comparePassword(password);
-        console.log('Password match result:', isMatch);
 
         if (!isMatch) {
             console.log('Password mismatch');
@@ -54,7 +50,7 @@ router.post('/login', async (req, res) => {
 
         // Generate token
         const token = jwt.sign({ userId: user._id }, 'my_secret_key', { expiresIn: '1h' });
-        console.log('Token generated successfully');
+        console.log('Token generated');
 
         res.json({
             user: {
